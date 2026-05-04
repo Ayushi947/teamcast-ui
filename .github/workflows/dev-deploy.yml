@@ -1,0 +1,64 @@
+name: Deploy to Teamcast Dev Frontend
+
+on:
+  workflow_run:
+    workflows: ['CI']
+    types:
+      - completed
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: self-hosted
+
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.TEAMCAST_DEV }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.GCP_DEV_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to GCP VM
+        run: |
+          ssh ${{ secrets.GCP_DEV_USER }}@${{ secrets.GCP_DEV_HOST }} << 'EOF'
+            # Set up Node.js environment
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            
+            # Use Node.js v20.19.3
+            nvm use 20.19.3
+            
+            # Install pnpm if not available
+            if ! command -v pnpm &> /dev/null; then
+              echo "Installing pnpm..."
+              npm install -g pnpm
+            fi
+            
+            # Create directory if it doesn't exist
+            mkdir -p /home/ubuntu/teamcast
+            cd /home/ubuntu/teamcast
+            
+            # Clone repository if it doesn't exist, otherwise pull latest
+            if [ ! -d "teamcast-ui" ]; then
+              echo "Cloning repository..."
+              git clone https://github.com/teamcast-ai/teamcast-ui.git
+            fi
+            
+            cd teamcast-ui
+            
+            # Pull latest changes
+            git pull origin main
+            
+            # Install dependencies
+            pnpm install
+            
+            # Build the application
+            pnpm run build
+            
+            # Start the application with PM2
+            pm2 restart teamcast-ui
+          EOF
