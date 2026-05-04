@@ -1,0 +1,435 @@
+'use client';
+
+import React from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  FileText,
+  Briefcase,
+  GraduationCap,
+  Award,
+  MapPin,
+  Calendar,
+  DollarSign,
+  Building,
+  Star,
+  Clock,
+  BookOpen,
+} from 'lucide-react';
+import { IPartnerCandidateDetailed } from '@/lib/shared';
+import { format } from 'date-fns';
+import { formatEnumValue } from '@/lib/utils';
+import { CommonTags } from '@/components/ui/common-tags';
+
+interface ResumeTabProps {
+  candidate: IPartnerCandidateDetailed;
+}
+
+const formatDate = (date: string | Date): string => {
+  if (!date) return 'N/A';
+  try {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    return format(dateObj, 'MMM yyyy');
+  } catch {
+    return 'Invalid Date';
+  }
+};
+
+const formatDateRange = (
+  startDate: string | Date,
+  endDate?: string | Date
+): string => {
+  const start = formatDate(startDate);
+  const end = endDate ? formatDate(endDate) : 'Present';
+  return `${start} - ${end}`;
+};
+
+export function ResumeTab({ candidate }: ResumeTabProps) {
+  const resume = candidate.resume;
+
+  if (!resume) {
+    return (
+      <div className="space-y-6">
+        <Card className="bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+              <FileText className="h-5 w-5 text-[#6e55cf] dark:text-purple-400" />
+              Resume Details
+            </CardTitle>
+            <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
+              Professional resume and experience information
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="py-12 text-center">
+              <FileText className="mx-auto mb-4 h-16 w-16 text-gray-300 dark:text-gray-600" />
+              <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+                No Resume Found
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                This candidate has not uploaded a resume yet.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Resume Overview */}
+      <Card className="bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+            <FileText className="h-5 w-5 text-[#6e55cf] dark:text-purple-400" />
+            Resume Overview
+          </CardTitle>
+          <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
+            Professional summary and current position
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {/* Summary */}
+          {resume.summary && (
+            <div className="space-y-2">
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Professional Summary
+              </h4>
+              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                {resume.summary}
+              </p>
+            </div>
+          )}
+
+          {/* Current Position */}
+          {resume.currentJobTitle && (
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Briefcase className="h-4 w-4 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Current Position
+                  </span>
+                </div>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  {resume.currentJobTitle}
+                </p>
+                {resume.currentCompany && (
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    at {resume.currentCompany}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Location
+                  </span>
+                </div>
+                <p className="text-sm text-gray-900 dark:text-white">
+                  {resume.currentWorkLocation ||
+                    resume.location ||
+                    'Not specified'}
+                </p>
+              </div>
+
+              {resume.currentSalary && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <DollarSign className="h-4 w-4 text-gray-500" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Current Salary
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-900 dark:text-white">
+                    {resume.currentSalary.toLocaleString()}{' '}
+                    {resume.currentSalaryCurrency}
+                  </p>
+                </div>
+              )}
+
+              {resume.totalExperience && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4 text-gray-500" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Total Experience
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-900 dark:text-white">
+                    {resume.totalExperience} years
+                  </p>
+                </div>
+              )}
+
+              {resume.highestEducationLevel && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="h-4 w-4 text-gray-500" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Education Level
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-900 dark:text-white">
+                    {formatEnumValue(resume.highestEducationLevel)}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Skills and Industries */}
+      {((resume.resumeSkills && resume.resumeSkills.length > 0) ||
+        (resume.industries && resume.industries.length > 0)) && (
+        <Card className="bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+              <Star className="h-5 w-5 text-[#6e55cf] dark:text-purple-400" />
+              Skills & Industries
+            </CardTitle>
+            <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
+              Professional skills and industry expertise
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {resume.resumeSkills && resume.resumeSkills.length > 0 && (
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Skills
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  <CommonTags
+                    values={resume.resumeSkills}
+                    maxVisible={8}
+                    className="border-purple-200 text-purple-700 dark:border-blue-700 dark:text-purple-300"
+                  />
+                </div>
+              </div>
+            )}
+
+            {resume.industries && resume.industries.length > 0 && (
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Industries
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  <CommonTags
+                    values={resume.industries}
+                    maxVisible={8}
+                    className="border-green-200 text-green-700 dark:border-green-700 dark:text-green-300"
+                  />
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Work Experience */}
+      {resume.experience && resume.experience.length > 0 && (
+        <Card className="bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+              <Briefcase className="h-5 w-5 text-[#6e55cf] dark:text-purple-400" />
+              Work Experience
+            </CardTitle>
+            <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
+              Professional work history and achievements
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {resume.experience.map((exp, index) => (
+                <div
+                  key={exp.id || index}
+                  className="space-y-3 border-l-4 border-[#6e55cf] pl-4"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                        {exp.position}
+                      </h4>
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Building className="h-4 w-4" />
+                        <span>{exp.company}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                      <Calendar className="h-4 w-4" />
+                      <span>{formatDateRange(exp.startDate, exp.endDate)}</span>
+                    </div>
+                  </div>
+
+                  {exp.description && (
+                    <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                      {exp.description}
+                    </p>
+                  )}
+
+                  {/* Projects */}
+                  {exp.projects && exp.projects.length > 0 && (
+                    <div className="space-y-2">
+                      <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Key Projects
+                      </h5>
+                      <div className="space-y-2">
+                        {exp.projects.map((project, projectIndex) => (
+                          <div
+                            key={project.id || projectIndex}
+                            className="space-y-2 rounded-lg bg-gray-50 p-3 dark:bg-gray-700"
+                          >
+                            <div className="flex items-start justify-between">
+                              <h6 className="text-sm font-medium text-gray-900 dark:text-white">
+                                {project.name}
+                              </h6>
+                              {project.startDate && (
+                                <span className="text-xs text-gray-500 dark:text-gray-400">
+                                  {formatDateRange(
+                                    project.startDate,
+                                    project.endDate
+                                  )}
+                                </span>
+                              )}
+                            </div>
+                            {project.description && (
+                              <p className="text-xs text-gray-600 dark:text-gray-400">
+                                {project.description}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Skills for this position */}
+                  {exp.skills && exp.skills.length > 0 && (
+                    <div className="space-y-2">
+                      <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Skills Used
+                      </h5>
+                      <div className="flex flex-wrap gap-1">
+                        {exp.skills.slice(0, 5).map((skill, skillIndex) => (
+                          <Badge
+                            key={skillIndex}
+                            variant="secondary"
+                            className="text-xs"
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                        {exp.skills.length > 5 && (
+                          <Badge variant="outline" className="text-xs">
+                            +{exp.skills.length - 5} more
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Education */}
+      {resume.education && resume.education.length > 0 && (
+        <Card className="bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+              <GraduationCap className="h-5 w-5 text-[#6e55cf] dark:text-purple-400" />
+              Education
+            </CardTitle>
+            <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
+              Educational background and qualifications
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {resume.education.map((edu, index) => (
+                <div
+                  key={edu.id || index}
+                  className="space-y-2 border-l-4 border-blue-500 pl-4"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                        {edu.degree}
+                      </h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {edu.institution}
+                      </p>
+                      {edu.fieldOfStudy && (
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {edu.fieldOfStudy}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                      <Calendar className="h-4 w-4" />
+                      <span>{formatDateRange(edu.startDate, edu.endDate)}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Certifications */}
+      {resume.certifications && resume.certifications.length > 0 && (
+        <Card className="bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+              <Award className="h-5 w-5 text-[#6e55cf] dark:text-purple-400" />
+              Certifications
+            </CardTitle>
+            <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
+              Professional certifications and credentials
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {resume.certifications.map((cert, index) => (
+                <div
+                  key={cert.id || index}
+                  className="rounded-lg border border-gray-200 p-4 dark:border-gray-700"
+                >
+                  <h4 className="font-semibold text-gray-900 dark:text-white">
+                    {cert.name}
+                  </h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {cert.issuer}
+                  </p>
+                  {cert.issueDate && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Issued: {formatDate(cert.issueDate)}
+                    </p>
+                  )}
+                  {cert.expiryDate && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Expires: {formatDate(cert.expiryDate)}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}

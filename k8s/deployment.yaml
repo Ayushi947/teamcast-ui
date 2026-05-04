@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamcast-ui
+  labels:
+    app: teamcast-ui
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: teamcast-ui
+  template:
+    metadata:
+      labels:
+        app: teamcast-ui
+    spec:
+      containers:
+        - name: teamcast-ui
+          image: teamcast-ui:latest
+          ports:
+            - containerPort: 3000
+              name: http
+          resources:
+            requests:
+              memory: '1Gi'
+              cpu: '250m'
+            limits:
+              memory: '2Gi'
+              cpu: '500m'
+          env:
+            - name: NODE_ENV
+              value: 'production'
+            - name: PM2_HOME
+              value: './.pm2'
+            - name: PORT
+              value: '3000'
+            - name: HOSTNAME
+              value: '0.0.0.0'
+            # Add your other environment variables here
+            - name: NEXT_PUBLIC_API_URL
+              value: 'https://api.teamcast.ai'
+            - name: NEXT_PUBLIC_SITE_URL
+              value: 'https://teamcast.ai'
+            - name: NEXT_PUBLIC_BASE_URL
+              value: 'https://teamcast.ai'
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 3
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  ['/bin/sh', '-c', 'pm2 stop all && pm2 delete all && sleep 5']
+          volumeMounts:
+            - name: logs
+              mountPath: /app/logs
+            - name: pm2-data
+              mountPath: /app/.pm2
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: logs
+          emptyDir: {}
+        - name: pm2-data
+          emptyDir: {}
+      restartPolicy: Always
+      securityContext:
+        fsGroup: 1000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: teamcast-ui-service
+  labels:
+    app: teamcast-ui
+spec:
+  selector:
+    app: teamcast-ui
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      name: http
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: teamcast-ui-config
+  labels:
+    app: teamcast-ui
+data:
+  NODE_ENV: 'production'
+  PORT: '3000'
+  HOSTNAME: '0.0.0.0'
+  NEXT_PUBLIC_API_URL: 'https://api.teamcast.ai'
+  NEXT_PUBLIC_SITE_URL: 'https://teamcast.ai'
+  NEXT_PUBLIC_BASE_URL: 'https://teamcast.ai'

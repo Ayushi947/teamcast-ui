@@ -1,0 +1,594 @@
+[
+  {
+    "name": "Afghanistan",
+    "isoCode": "AF",
+    "dialCode": "+93",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[7][0-9]{8}$"
+  },
+  {
+    "name": "Albania",
+    "isoCode": "AL",
+    "dialCode": "+355",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[6][0-9]{8}$"
+  },
+  {
+    "name": "Algeria",
+    "isoCode": "DZ",
+    "dialCode": "+213",
+    "phoneNumberLength": 9,
+    "format": "XXX XX XX XX",
+    "regex": "^[5-7][0-9]{8}$"
+  },
+  {
+    "name": "Argentina",
+    "isoCode": "AR",
+    "dialCode": "+54",
+    "phoneNumberLength": 10,
+    "format": "XX XXXX XXXX",
+    "regex": "^[1-9][0-9]{9}$"
+  },
+  {
+    "name": "Australia",
+    "isoCode": "AU",
+    "dialCode": "+61",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[4][0-9]{8}$"
+  },
+  {
+    "name": "Austria",
+    "isoCode": "AT",
+    "dialCode": "+43",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[6][0-9]{9}$"
+  },
+  {
+    "name": "Bangladesh",
+    "isoCode": "BD",
+    "dialCode": "+880",
+    "phoneNumberLength": 10,
+    "format": "XXXX XXXXXX",
+    "regex": "^[1][3-9][0-9]{8}$"
+  },
+  {
+    "name": "Belgium",
+    "isoCode": "BE",
+    "dialCode": "+32",
+    "phoneNumberLength": 9,
+    "format": "XXX XX XX XX",
+    "regex": "^[4][0-9]{8}$"
+  },
+  {
+    "name": "Brazil",
+    "isoCode": "BR",
+    "dialCode": "+55",
+    "phoneNumberLength": 11,
+    "format": "XX XXXXX XXXX",
+    "regex": "^[1-9][1-9][9][0-9]{8}$"
+  },
+  {
+    "name": "Bulgaria",
+    "isoCode": "BG",
+    "dialCode": "+359",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[8][0-9]{8}$"
+  },
+  {
+    "name": "Canada",
+    "isoCode": "CA",
+    "dialCode": "+1",
+    "phoneNumberLength": 10,
+    "format": "(XXX) XXX-XXXX",
+    "regex": "^[2-9][0-9]{2}[2-9][0-9]{6}$"
+  },
+  {
+    "name": "Chile",
+    "isoCode": "CL",
+    "dialCode": "+56",
+    "phoneNumberLength": 9,
+    "format": "X XXXX XXXX",
+    "regex": "^[9][0-9]{8}$"
+  },
+  {
+    "name": "China",
+    "isoCode": "CN",
+    "dialCode": "+86",
+    "phoneNumberLength": 11,
+    "format": "XXX XXXX XXXX",
+    "regex": "^[1][3-9][0-9]{9}$"
+  },
+  {
+    "name": "Colombia",
+    "isoCode": "CO",
+    "dialCode": "+57",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[3][0-9]{9}$"
+  },
+  {
+    "name": "Croatia",
+    "isoCode": "HR",
+    "dialCode": "+385",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[9][0-9]{8}$"
+  },
+  {
+    "name": "Czech Republic",
+    "isoCode": "CZ",
+    "dialCode": "+420",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[6-7][0-9]{8}$"
+  },
+  {
+    "name": "Denmark",
+    "isoCode": "DK",
+    "dialCode": "+45",
+    "phoneNumberLength": 8,
+    "format": "XX XX XX XX",
+    "regex": "^[2-9][0-9]{7}$"
+  },
+  {
+    "name": "Egypt",
+    "isoCode": "EG",
+    "dialCode": "+20",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[1][0-9]{9}$"
+  },
+  {
+    "name": "Finland",
+    "isoCode": "FI",
+    "dialCode": "+358",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[4][0-9]{8}$"
+  },
+  {
+    "name": "France",
+    "isoCode": "FR",
+    "dialCode": "+33",
+    "phoneNumberLength": 9,
+    "format": "X XX XX XX XX",
+    "regex": "^[6-7][0-9]{8}$"
+  },
+  {
+    "name": "Germany",
+    "isoCode": "DE",
+    "dialCode": "+49",
+    "phoneNumberLength": 11,
+    "format": "XXX XXXXXXXX",
+    "regex": "^[1][5-7][0-9]{9}$"
+  },
+  {
+    "name": "Ghana",
+    "isoCode": "GH",
+    "dialCode": "+233",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[2-5][0-9]{8}$"
+  },
+  {
+    "name": "Greece",
+    "isoCode": "GR",
+    "dialCode": "+30",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[6][0-9]{9}$"
+  },
+  {
+    "name": "Hungary",
+    "isoCode": "HU",
+    "dialCode": "+36",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[237][0-9]{8}$"
+  },
+  {
+    "name": "Iceland",
+    "isoCode": "IS",
+    "dialCode": "+354",
+    "phoneNumberLength": 7,
+    "format": "XXX XXXX",
+    "regex": "^[6-8][0-9]{6}$"
+  },
+  {
+    "name": "India",
+    "isoCode": "IN",
+    "dialCode": "+91",
+    "phoneNumberLength": 10,
+    "format": "XXXXX XXXXX",
+    "regex": "^[6-9][0-9]{9}$"
+  },
+  {
+    "name": "Indonesia",
+    "isoCode": "ID",
+    "dialCode": "+62",
+    "phoneNumberLength": 11,
+    "format": "XXX XXXX XXXX",
+    "regex": "^[8][0-9]{10}$"
+  },
+  {
+    "name": "Iran",
+    "isoCode": "IR",
+    "dialCode": "+98",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[9][0-9]{9}$"
+  },
+  {
+    "name": "Iraq",
+    "isoCode": "IQ",
+    "dialCode": "+964",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[7][0-9]{9}$"
+  },
+  {
+    "name": "Ireland",
+    "isoCode": "IE",
+    "dialCode": "+353",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[8][0-9]{8}$"
+  },
+  {
+    "name": "Israel",
+    "isoCode": "IL",
+    "dialCode": "+972",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[5][0-9]{8}$"
+  },
+  {
+    "name": "Italy",
+    "isoCode": "IT",
+    "dialCode": "+39",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[3][0-9]{9}$"
+  },
+  {
+    "name": "Japan",
+    "isoCode": "JP",
+    "dialCode": "+81",
+    "phoneNumberLength": 10,
+    "format": "XX XXXX XXXX",
+    "regex": "^[7-9][0-9]{9}$"
+  },
+  {
+    "name": "Jordan",
+    "isoCode": "JO",
+    "dialCode": "+962",
+    "phoneNumberLength": 9,
+    "format": "X XXXX XXXX",
+    "regex": "^[7][0-9]{8}$"
+  },
+  {
+    "name": "Kazakhstan",
+    "isoCode": "KZ",
+    "dialCode": "+7",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[7][0-9]{9}$"
+  },
+  {
+    "name": "Kenya",
+    "isoCode": "KE",
+    "dialCode": "+254",
+    "phoneNumberLength": 9,
+    "format": "XXX XXXXXX",
+    "regex": "^[7][0-9]{8}$"
+  },
+  {
+    "name": "South Korea",
+    "isoCode": "KR",
+    "dialCode": "+82",
+    "phoneNumberLength": 10,
+    "format": "XX XXXX XXXX",
+    "regex": "^[1][0-9]{9}$"
+  },
+  {
+    "name": "Kuwait",
+    "isoCode": "KW",
+    "dialCode": "+965",
+    "phoneNumberLength": 8,
+    "format": "XXXX XXXX",
+    "regex": "^[5-9][0-9]{7}$"
+  },
+  {
+    "name": "Lebanon",
+    "isoCode": "LB",
+    "dialCode": "+961",
+    "phoneNumberLength": 8,
+    "format": "XX XXX XXX",
+    "regex": "^[37][0-9]{7}$"
+  },
+  {
+    "name": "Malaysia",
+    "isoCode": "MY",
+    "dialCode": "+60",
+    "phoneNumberLength": 10,
+    "format": "XX XXXX XXXX",
+    "regex": "^[1][0-9]{9}$"
+  },
+  {
+    "name": "Mexico",
+    "isoCode": "MX",
+    "dialCode": "+52",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[1-9][0-9]{9}$"
+  },
+  {
+    "name": "Morocco",
+    "isoCode": "MA",
+    "dialCode": "+212",
+    "phoneNumberLength": 9,
+    "format": "XXX XX XX XX",
+    "regex": "^[6-7][0-9]{8}$"
+  },
+  {
+    "name": "Netherlands",
+    "isoCode": "NL",
+    "dialCode": "+31",
+    "phoneNumberLength": 9,
+    "format": "X XX XX XX XX",
+    "regex": "^[6][0-9]{8}$"
+  },
+  {
+    "name": "New Zealand",
+    "isoCode": "NZ",
+    "dialCode": "+64",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[2][0-9]{8}$"
+  },
+  {
+    "name": "Nigeria",
+    "isoCode": "NG",
+    "dialCode": "+234",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[7-9][0-9]{9}$"
+  },
+  {
+    "name": "Norway",
+    "isoCode": "NO",
+    "dialCode": "+47",
+    "phoneNumberLength": 8,
+    "format": "XXXX XXXX",
+    "regex": "^[49][0-9]{7}$"
+  },
+  {
+    "name": "Pakistan",
+    "isoCode": "PK",
+    "dialCode": "+92",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[3][0-9]{9}$"
+  },
+  {
+    "name": "Peru",
+    "isoCode": "PE",
+    "dialCode": "+51",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[9][0-9]{8}$"
+  },
+  {
+    "name": "Philippines",
+    "isoCode": "PH",
+    "dialCode": "+63",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[9][0-9]{9}$"
+  },
+  {
+    "name": "Poland",
+    "isoCode": "PL",
+    "dialCode": "+48",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[4-8][0-9]{8}$"
+  },
+  {
+    "name": "Portugal",
+    "isoCode": "PT",
+    "dialCode": "+351",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[9][0-9]{8}$"
+  },
+  {
+    "name": "Qatar",
+    "isoCode": "QA",
+    "dialCode": "+974",
+    "phoneNumberLength": 8,
+    "format": "XXXX XXXX",
+    "regex": "^[357][0-9]{7}$`"
+  },
+  {
+    "name": "Romania",
+    "isoCode": "RO",
+    "dialCode": "+40",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[7][0-9]{8}$"
+  },
+  {
+    "name": "Russia",
+    "isoCode": "RU",
+    "dialCode": "+7",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[9][0-9]{9}$"
+  },
+  {
+    "name": "Saudi Arabia",
+    "isoCode": "SA",
+    "dialCode": "+966",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[5][0-9]{8}$"
+  },
+  {
+    "name": "Singapore",
+    "isoCode": "SG",
+    "dialCode": "+65",
+    "phoneNumberLength": 8,
+    "format": "XXXX XXXX",
+    "regex": "^[8-9][0-9]{7}$"
+  },
+  {
+    "name": "Slovakia",
+    "isoCode": "SK",
+    "dialCode": "+421",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[9][0-9]{8}$"
+  },
+  {
+    "name": "Slovenia",
+    "isoCode": "SI",
+    "dialCode": "+386",
+    "phoneNumberLength": 8,
+    "format": "XX XXX XXX",
+    "regex": "^[0-9][0-9]{7}$"
+  },
+  {
+    "name": "South Africa",
+    "isoCode": "ZA",
+    "dialCode": "+27",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[6-8][0-9]{8}$"
+  },
+  {
+    "name": "Spain",
+    "isoCode": "ES",
+    "dialCode": "+34",
+    "phoneNumberLength": 9,
+    "format": "XXX XX XX XX",
+    "regex": "^[6-7][0-9]{8}$"
+  },
+  {
+    "name": "Sri Lanka",
+    "isoCode": "LK",
+    "dialCode": "+94",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[7][0-9]{8}$"
+  },
+  {
+    "name": "Sweden",
+    "isoCode": "SE",
+    "dialCode": "+46",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XX XX",
+    "regex": "^[7][0-9]{8}$"
+  },
+  {
+    "name": "Switzerland",
+    "isoCode": "CH",
+    "dialCode": "+41",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XX XX",
+    "regex": "^[7][0-9]{8}$"
+  },
+  {
+    "name": "Taiwan",
+    "isoCode": "TW",
+    "dialCode": "+886",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[9][0-9]{8}$"
+  },
+  {
+    "name": "Thailand",
+    "isoCode": "TH",
+    "dialCode": "+66",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[6-9][0-9]{8}$"
+  },
+  {
+    "name": "Tunisia",
+    "isoCode": "TN",
+    "dialCode": "+216",
+    "phoneNumberLength": 8,
+    "format": "XX XXX XXX",
+    "regex": "^[2-9][0-9]{7}$"
+  },
+  {
+    "name": "Turkey",
+    "isoCode": "TR",
+    "dialCode": "+90",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[5][0-9]{9}$"
+  },
+  {
+    "name": "Ukraine",
+    "isoCode": "UA",
+    "dialCode": "+380",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[0-9][0-9]{8}$"
+  },
+  {
+    "name": "UAE",
+    "isoCode": "AE",
+    "dialCode": "+971",
+    "phoneNumberLength": 9,
+    "format": "XX XXX XXXX",
+    "regex": "^[5][0-9]{8}$"
+  },
+  {
+    "name": "United Kingdom",
+    "isoCode": "GB",
+    "dialCode": "+44",
+    "phoneNumberLength": 10,
+    "format": "XXXX XXX XXXX",
+    "regex": "^[7][0-9]{9}$"
+  },
+  {
+    "name": "United States",
+    "isoCode": "US",
+    "dialCode": "+1",
+    "phoneNumberLength": 10,
+    "format": "(XXX) XXX-XXXX",
+    "regex": "^[2-9][0-9]{2}[2-9][0-9]{6}$"
+  },
+  {
+    "name": "Uruguay",
+    "isoCode": "UY",
+    "dialCode": "+598",
+    "phoneNumberLength": 8,
+    "format": "XXXX XXXX",
+    "regex": "^[9][0-9]{7}$"
+  },
+  {
+    "name": "Venezuela",
+    "isoCode": "VE",
+    "dialCode": "+58",
+    "phoneNumberLength": 10,
+    "format": "XXX XXX XXXX",
+    "regex": "^[4][0-9]{9}$"
+  },
+  {
+    "name": "Vietnam",
+    "isoCode": "VN",
+    "dialCode": "+84",
+    "phoneNumberLength": 9,
+    "format": "XXX XXX XXX",
+    "regex": "^[0-9][0-9]{8}$"
+  }
+]
