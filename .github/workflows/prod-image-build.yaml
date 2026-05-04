@@ -1,0 +1,72 @@
+name: Build-Push Docker Image for Teamcast Frontend prod
+
+on:
+  push:
+    tags:
+      - 'v1.0.*'
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  AR_HOSTNAME: us-central1-docker.pkg.dev
+  AR_REPOSITORY: teamcast-frontend
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Google Auth
+      id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+        token_format: 'access_token'
+        create_credentials_file: true
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Configure Docker
+      run: gcloud auth configure-docker ${{ env.AR_HOSTNAME }}
+
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: us-central1-docker.pkg.dev/teamcast-prod/teamcast-prod/frontend:v1.0.${{ github.run_number }}
+        build-args: |
+          NODE_ENV=production
+          NEXT_PUBLIC_ENV_NAME=dev
+          NEXT_PUBLIC_API_URL=https://api.teamcast.ai/api
+          NEXT_PUBLIC_WEBSOCKET_URL=ws://api.teamcast.ai/ws
+          NEXT_PUBLIC_SITE_URL=https://teamcast.ai
+          NEXT_PUBLIC_BASE_URL=https://teamcast.ai
+          NEXT_PUBLIC_APP_NAME=Teamcast
+          NEXT_PUBLIC_GA_ID=G-E6GF74546W
+          NEXT_PUBLIC_GA_MEASUREMENT_ID=G-E6GF74546W
+          NEXT_PUBLIC_GTM_ID=${{ secrets.GTM_ID }}
+          NEXT_PUBLIC_HUBSPOT_PORTAL_ID=242572127
+          NEXT_PUBLIC_CACHE_MAX_AGE=31536000
+          NEXT_PUBLIC_PROFILE_COMPLETION_THRESHOLD=80
+          NEXT_PUBLIC_INTERNET_SPEED_THRESHOLD=0.5
+          NEXT_PUBLIC_VIDEO_CHUNK_INTERVAL=30
+          NEXT_PUBLIC_VIDEO_WIDTH=320
+          NEXT_PUBLIC_VIDEO_HEIGHT=240
+          NEXT_PUBLIC_VIDEO_FRAME_RATE=5
+          NEXT_PUBLIC_ASSESSMENT_TIME_WARNING_THRESHOLD=300
+          NEXT_PUBLIC_ASSESSMENT_HEARTBEAT_INTERVAL=5
+          NEXT_PUBLIC_MIN_TEXT_ANSWER_LENGTH=10
+          GOOGLE_CLOUD_PROJECT_ID=teamcastai
+          NPM_TOKEN=${{ secrets.NPM_TOKEN }}
+          CONVEX_SELF_HOSTED_ADMIN_KEY=convex-self-hosted|7adc02567ae8689511dbdb653b5ce5617e
+          NEXT_CONVEX_SELF_HOSTED_URL=https://convex.api.teamcast.ai
+          CONVEX_SELF_HOSTED_URL=https://convex.api.teamcast.ai
+        no-cache: true
